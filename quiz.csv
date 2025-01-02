@@ -1,0 +1,942 @@
+,Question,Options,Answer
+0,What is the correct file extension for Python files?,"['a) .py', 'b) .python', 'c) .pyt', 'd) .pt']",A
+1,What is the correct syntax to output 'Hello World' in Python?,"[""a) echo('Hello World')"", ""b) print('Hello World')"", ""c) p('Hello World')"", ""d) printf('Hello World')""]",B
+2,Which of the following is a valid variable name in Python?,"['a) 2variable', 'b) variable _ name', 'c) variable-name', 'd) variable.name']",B
+3,What is the output of the following code? print(4 + 3 * 2),"['a) 14', 'b) 10', 'c) 16', 'd) 11']",B
+4,Which of the following is NOT a valid Python data type?,"['a) List', 'b) Tuple', 'c) Set', 'd) Array']",D
+5,How do you start a while loop in Python?,"['a) while (x < 10):', 'b) while x < 10', 'c) while {x < 10}:', 'd) while x < 10:']",A
+6,What is the correct way to create a list in Python?,"['a) list = ()', 'b) list = {}', 'c) list = []', 'd) list = <>']",C
+7,What does the len() function do in Python?,"['a) Returns the length of a list', 'b) Returns the number of variables', 'c) Counts characters in a string', 'd) Returns the type of a variable']",A
+8,How do you create a comment in Python?,"['a) /* This is a comment */', 'b) <!-- This is a comment -->', 'c) // This is a comment', 'd) # This is a comment']",D
+9,Which of these data types is immutable in Python?,"['a) List', 'b) Dictionary', 'c) Set', 'd) Tuple']",D
+10,Which operator is used for exponentiation in Python?,"['a) ^', 'b) **', 'c) %', 'd) //']",B
+11,How do you create a tuple in Python?,"['a) tuple = []', 'b) tuple = {}', 'c) tuple = ()', 'd) tuple = <>']",C
+12,How do you start a function in Python?,"['a) function myFunc():', 'b) def myFunc():', 'c) def myFunc:', 'd) func myFunc():']",B
+13,What will the following expression return? 3 == 3.0,"['a) True', 'b) False', 'c) Error', 'd) None']",A
+14,How do you convert a string s to all uppercase letters in Python?,"['a) s.upper()', 'b) s.toUpper()', 'c) s.upcase()', 'd) s.uppercase()']",A
+15,How do you create an infinite loop in Python?,"['a) while True:', 'b) for True:', 'c) while (True){}', 'd) while(1 == 1)']",A
+16,Which Python function can be used to generate random numbers?,"['a) random.randint()', 'b) random.number()', 'c) random.generate()', 'd) random.num()']",A
+17,Which of the following is NOT a loop in Python?,"['a) for', 'b) foreach', 'c) while', 'd) None of the above']",B
+18,Which method is used to get user input in Python?,"['a) input()', 'b) scan()', 'c) get()', 'd) read()']",A
+19,What is the result of the following code? print(10/3),"['a) 3', 'b) 3.3333', 'c) 3.0', 'd) 3.33']",B
+20,Which operator is used to compare two values in Python?,"['a) ==', 'b) =', 'c) ===', 'd) ><']",A
+21,Which of the following is a Python keyword?,"['a) eval', 'b) for', 'c) print', 'd) input']",B
+22,What does the range() function do in Python?,"['a) Generates a list of numbers', 'b) Returns a range object', 'c) Returns the range of a variable', 'd) None of the above']",B
+23,What does the append() method do in Python?,"['a) Adds an element at the beginning of a list', 'b) Adds an element to the end of a list', 'c) Removes an element from a list', 'd) Sorts the list']",B
+24,Which keyword is used to create a class in Python?,"['a) def', 'b) function', 'c) class', 'd) method']",C
+25,Which of the following is used to define a block of code in Python?,"['a) Curly brackets', 'b) Parentheses', 'c) Indentation', 'd) Semicolons']",C
+26,What is the result of the following expression? 4 % 2,"['a) 0', 'b) 1', 'c) 2', 'd) Error']",A
+27,What will the following code output? print(type([])),"[""a) <class 'list'>"", ""b) <class 'tuple'>"", ""c) <class 'array'>"", ""d) <class 'set'>""]",A
+28,"What is the output of the following code? x = [1, 2, 3] print(len(x))","['a) 1', 'b) 2', 'c) 3', 'd) 4']",C
+29,What is the correct way to declare a variable in Python?,"['a) var x = 10', 'b) int x = 10', 'c) x = 10', 'd) let x = 10']",C
+30,Which of the following is NOT a valid Python data structure?,"['a) List', 'b) Stack', 'c) Set', 'd) Dictionary']",B
+31,How do you create a set in Python?,"['a) set = []', 'b) set = {}', 'c) set = ()', 'd) set = set()']",D
+32,What is the result of the following expression? 10 != 9,"['a) True', 'b) False', 'c) None', 'd) Error']",A
+33,"What is the output of the following code? print(min(4, 12, 7, 3))","['a) 12', 'b) 7', 'c) 4', 'd) 3']",D
+34,Who developed Python Programming Language?,"['a) Wick van Rossum', 'b) Rasmus Lerdorf', 'c) Guido van Rossum', 'd) Niene Stom']",C
+35,Which type of Programming does Python support?,"['a) object-oriented programming', 'b) structured programming', 'c) functional programming', 'd) all of the mentioned']",D
+36,What will be the output of the following Python program? i = 0 while i < 5: print(i) i += 1 if i == 3: break else: print(0),"['a) Error', 'b) 0 1 2 0', 'c) 0 1 2', 'd) none of the mentioned']",C
+37,All keywords in Python are in ___,"['a) Capitalized', 'b) lower case', 'c) UPPER CASE', 'd) None of the mentioned']",D
+38,Is Python code compiled or interpreted?,"['a) Python code is both compiled and interpreted', 'b) Python code is neither compiled nor interpreted', 'c) Python code is only compiled', 'd) Python code is only interpreted']",A
+39,What is the order of namespaces in which Python looks for an identifier?,"['a) Python first searches the built-in namespace, then the global namespace and finally the local namespace', 'b) Python first searches the built-in namespace, then the local namespace and finally the global namespace', 'c) Python first searches the local namespace, then the global namespace and finally the built-in namespace', 'd) Python first searches the global namespace, then the local namespace and finally the built-in namespace']",C
+40,Which of the following is not a core data type in Python programming?,"['a) Tuples', 'b) Lists', 'c) Class', 'd) Dictionary']",C
+41,What will be the output of the following Python expression if x=56.236? print('%.2f'%x),"['a) 56.236', 'b) 56.23', 'c) 56.0000', 'd) 56.24']",D
+42,Which of these is the definition for packages in Python?,"['a) A set of main modules', 'b) A folder of python modules', 'c) A number of files containing Python definitions and statements', 'd) A set of programs making use of Python modules']",B
+43,"What will be the output of the following Python function? len(['hello',2, 4, 6])","['a) Error', 'b) 6', 'c) 4', 'd) 3']",C
+44,Which function is called when the following Python program is executed? f = foo() format(f),"['a) str()', 'b) format()', 'c) _str()', 'd) __format_()']",C
+45,Which one of the following is not a keyword in Python language?,"['a) pass', 'b) eval', 'c) assert', 'd) nonlocal']",B
+46,Which module in the python standard library parses options received from the command line?,"['a) getarg', 'b) getopt', 'c) main', 'd) os']",B
+47,"What will be the output of the following Python program? z=set('abc') z.add('san') z.update(set(['p', 'q'])) z","[""a) {'a', 'c', 'c', 'p', 'q', 's', 'a', 'n'}"", ""b) {'abc', 'p', 'q', 'san'}"", ""c) {'a', 'b', 'c', 'p', 'q', 'san'}"", ""d) {'a', 'b', 'c', ['p', 'q'], 'san'}""]",C
+48,What arithmetic operators cannot be used with strings in Python?,"['a) *', 'b) -', 'c) +', 'd) All of the mentioned']",B
+49,What will be the output of the following Python code? print('abc. DEF'.capitalize()),"['a) Abc. def', 'b) abc. def', 'c) Abc. Def', 'd) ABC. DEF']",A
+50,Which one of the following is the use of function in python?,"['a) Functions don’t provide better modularity for your application', 'b) you can’t also create your own functions', 'c) Functions are reusable pieces of programs', 'd) All of the mentioned']",C
+51,"Which of the following Python statements will result in the output: 6? A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]","['a) A[2][1]', 'b) A[1][2]', 'c) A[3][2]', 'd) A[2][3]']",B
+52,What is the maximum possible length of an identifier in Python?,"['a) 79 characters', 'b) 31 characters', 'c) 63 characters', 'd) none of the mentioned']",D
+53,Which of the following is a feature of Python DocString?,"['a) In Python all functions should have a docstring', 'b) Docstrings can be accessed by the _doc_ attribute on objects', 'c) It provides a convenient way of associating documentation with Python modules, functions, classes, and methods', 'd) All of the mentioned']",D
+54,"What is output of print(math.pow(3, 2))?","['a) 9.0', 'b) None', 'c) 9', 'd) None of the mentioned']",A
+55,Which of the following is the use of id() function in python?,"['a) Every object in Python doesn’t have a unique id', 'b) In Python Id function returns the identity of the object', 'c) None of the mentioned', 'd) All of the mentioned']",B
+56,"What will be the output of the following Python code? x = [[0], [1]] print((' '.join(list(map(str, x))),))","['a) 01', 'b) [0] [1]', ""c) ('01')"", ""d) ('[0] [1]',)""]",D
+57,The process of pickling in Python includes ____,"['a) conversion of a Python object hierarchy into byte stream', 'b) conversion of a datatable into a list', 'c) conversion of a byte stream into Python object hierarchy', 'd) conversion of a list into a datatable']",A
+58,Which of the following functions can help us to find the version of python that we are currently working on?,"['a) sys.version(1)', 'b) sys.version(0)', 'c) sys.version()', 'd) sys.version']",D
+59,"Python supports the creation of anonymous functions at runtime, using a construct called ____","['a) pi', 'b) anonymous', 'c) lambda', 'd) none of the mentioned']",C
+60,What is the order of precedence in python?,"['a) Exponential, Parentheses, Multiplication, Division, Addition, Subtraction', 'b) Exponential, Parentheses, Division, Multiplication, Addition, Subtraction', 'c) Parentheses, Exponential, Multiplication, Addition, Division, Subtraction', 'd) Parentheses, Exponential, Multiplication, Division, Addition, Subtraction']",D
+61,What will be the output of the following Python code snippet if x=1? x<<2,"['a) 4', 'b) 2', 'c) 1', 'd) 8']",A
+62,What does pip stand for python?,"['a) Pip Installs Python', 'b) Pip Installs Packages', 'c) Preferred Installer Program', 'd) All of the mentioned']",C
+63,Which of the following is true for variable names in Python?,"['a) underscore and ampersand are the only two special characters allowed', 'b) unlimited length', 'c) all private members must have leading and trailing underscores', 'd) none of the mentioned']",B
+64,"What are the values of the following Python expressions? 2*(32), (23)2, 23*2","['a) 512, 64, 512', 'b) 512, 512, 512', 'c) 64, 512, 64', 'd) 64, 64, 64']",A
+65,Which of the following is the truncation division operator in Python?,"['a) |', 'b) //', 'c) /', 'd) %']",B
+66,"What will be the output of the following Python code? l=[1, 0, 2, 0, 'hello', '', []] list(filter(bool, l))","['a) [1, 0, 2, ‘hello’, ”, []]', 'b) Error', 'c) [1, 2, ‘hello’]', 'd) [1, 0, 2, 0, ‘hello’, ”, []]']",C
+67,Which of the following functions is a built-in function in python?,"['a) factorial()', 'b) print()', 'c) seed()', 'd) sqrt()']",B
+68,Which of the following is the use of id() function in python?,"['a) Every object doesn’t have a unique id', 'b) Id returns the identity of the object', 'c) All of the mentioned', 'd) None of the mentioned']",B
+69,Which of the following best describes inheritance?,"['a) Ability of a class to derive members of another class as a part of its own definition', 'b) Means of bundling instance variables and methods in order to restrict access to certain class members', 'c) Focuses on variables and passing of variables to functions', 'd) Allows for implementation of elegant software that is well designed and easily modified']",A
+70,Which of the following statements is wrong about inheritance?,"['a) Protected members of a class can be inherited', 'b) The inheriting class is called a subclass', 'c) Private members of a class can be inherited and accessed', 'd) Inheritance is one of the features of OOP']",C
+71,What is the time complexity of accessing an element in a Python list by index?,"a) O(1)
+b) O(n)
+c) O(log n)
+d) O(n^2)",a) O(1)
+72,What is the difference between is and == operators in Python?,"a) is compares values, == compares identities
+b) Both compare values
+c) is compares identities, == compares values
+d) is compares data types, == compares values","c) is compares identities, == compares values"
+73,"What is the result of the following code?
+a = [1, 2, 3, 4]
+b = a
+b.append(5)
+print(a)","a) [1, 2, 3, 4]
+b) [1, 2, 3, 4, 5]
+c) [5]
+d) Error","b) [1, 2, 3, 4, 5]"
+74,"What will be the result of the following code?
+x = {1, 2, 3}
+y = {3, 4, 5}
+print(x & y)","a) {1, 2, 3, 4, 5}
+b) {3}
+c) {1, 2}
+d) {4, 5}",b) {3}
+75,What does the zip() function do in Python?,"a) Compresses two iterables
+b) Combines two iterables into tuples
+c) Iterates through two lists alternately
+d) Joins two strings",b) Combines two iterables into tuples
+76,"What is the output of the following code?
+x = 10
+def outer():
+    x = 5
+    def inner():
+        nonlocal x
+        x = 7
+    inner()
+    print(x)
+outer()","a) 5
+b) 7
+c) 10
+d) Error",b) 7
+77,"What is the output of the following code?
+print(""5"" + ""5"")","a) 55
+b) 10
+c) Error
+d) None",a) 55
+78,How do you handle exceptions in Python?,"a) if-except block
+b) try-except block
+c) try-catch block
+d) if-catch block",b) try-except block
+79,Which method is used to remove whitespace from the beginning and end of a string?,"a) strip()
+b) split()
+c) join()
+d) remove()",a) strip()
+80,"What is the output of the following code?
+x = [10, 20, 30]
+print(x[-1])","a) 10
+b) 20
+c) 30
+d) Error",c) 30
+81,How do you add an element at a specific position in a list?,"a) list.insert(index, element)
+b) list.append(element, index)
+c) list.add(element, index)
+d) list.push(index, element)","a) list.insert(index, element)"
+82,"What is the result of the following code?
+print([i*i for i in range(5) if i % 2 == 0])","a) [1, 4, 9]
+b) [0, 4, 16]
+c) [0, 1, 4]
+d) Error","b) [0, 4, 16]"
+83,How do you reverse a list l in place without creating a new list?,"a) l[::-1]
+b) l.reverse()
+c) reversed(l)
+d) l.sort(reverse=True)",b) l.reverse()
+84,How do you remove duplicates from a list in Python?,"a) list.Remove_duplicates()
+b) set(list)
+c) list.remove(set)
+d) unique(list)",b) set(list)
+85,"What will the following code output?
+try:
+    1 / 0
+except ZeroDivisionError:
+    print(""Division by zero!"")
+except Exception:
+    print(""Exception occurred!"")
+finally:
+    print(""End."")","a) Division by zero! End.
+b) Exception occurred! End.
+c) Division by zero!
+d) Error",a) Division by zero! End.
+86,"What is the result of the following code?
+x = {i: i**2 for i in range(3)}
+print(x)","A) {1: 1, 2: 4}
+B) {0: 0, 1: 1, 2: 4}
+C) [0, 1, 2]
+D) Error","B) {0: 0, 1: 1, 2: 4}"
+87,"What will the following code output?
+x = [[0]*3]*3
+x[0][0] = 1
+print(x)","a) [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
+b) [[1, 0, 0], [1, 0, 0], [1, 0, 0]]
+c) [[1, 0, 0], [1, 1, 1], [1, 1, 1]]
+d) [[1, 1, 1], [0, 0, 0], [0, 0, 0]]","b) [[1, 0, 0], [1, 0, 0], [1, 0, 0]]"
+88,What does the in keyword check in Python?,"a) Membership in sequences
+b) Identity
+c) Equality
+d) Type",a) Membership in sequences
+89,What does the _name_ variable represent in Python?,"a) The name of a class
+b) The name of the script when run directly
+c) The name of the module
+d) Both b and c",d) Both b and c
+90,Which of the following methods is used to return the keys of a dictionary in Python?,"a) dict.keys()
+b) dict.get_keys()
+c) dict.values()
+d) dict.items()",a) dict.keys()
+91,What does the assert statement do in Python?,"a) Checks if an expression is true, and raises an Assertion Error if it is false
+b) Silently passes the code block if the expression is true
+c) Asserts that a certain type of variable is used
+d) Does nothing","a) Checks if an expression is true, and raises an Assertion Error if it is false"
+92,Which of the following best describes the purpose of decorators in Python?,"a) They are used to create a graphical interface
+b) They are used to alter the functionality of a function or method
+c) They are used to apply a function to each item in a list
+d) They are used to implement multiple inheritance",b) They are used to alter the functionality of a function or method
+93,Which of the following statements is correct about list comprehensions in Python?,"a) They are faster than for loops
+b) They are always slower than for loops
+c) They do not allow conditional statements
+d) They can only create lists",a) They are faster than for loops
+94,"What will be the output of the following code?
+            x = (1, 2, 3)
+            x[0] = 0","a) (0, 2, 3)
+b) [0, 2, 3]
+c) Error
+d) None",c) Error
+95,"What will be the result of the following code?
+x = {1: 'a', 2: 'b', 3: 'c'}
+del x[1]
+print(x)","a) {1: 'a', 2: 'b', 3: 'c'}
+b) {2: 'b', 3: 'c'}
+c) {1: 'b', 3: 'c'}
+d) Error","b) {2: 'b', 3: 'c'}"
+96,"In Python, what does the @classmethod decorator do?","a) It defines a method that belongs to a class rather than an instance
+b) It defines a private method
+c) It defines a method that can only be called from within the class
+d) It defines a method that overrides the constructor",a) It defines a method that belongs to a class rather than an instance
+97,What is a Python closure?,"a) A function that is defined inside another function and remembers the variables from the outer function
+b) A private method within a class
+c) A function that closes over variables and prevents them from being modified
+d) A generator function",a) A function that is defined inside another function and remembers the variables from the outer function
+98,"What will the following code output?
+my_list = ['a', 'b', 'c']
+for i, value in enumerate(my_list, 1):
+    print(i, value)","a) 1 a, 2 b, 3 c
+b) a 1, b 2, c 3
+c) 0 a, 1 b, 2 c
+d) Error","a) 1 a, 2 b, 3 c"
+99,"What is the output of the following code?
+def foo(bar=[]):
+    bar.append(1)
+    return bar
+print(foo())
+print(foo())","a) [1], [1]
+b) [1], [1, 1]
+c) [1, 1], [1]
+d) Error","b) [1], [1, 1]"
+100,What is the role of the _name_ == '_main_' construct in Python scripts?,"a) It runs code when a module is imported
+b) It allows a module to be run as a standalone program
+c) It automatically imports the main module
+d) It prevents the script from running",b) It allows a module to be run as a standalone program
+101,What is the difference between @staticmethod and @classmethod in Python?,"a) @staticmethod requires a reference to the class object, @classmethod does not
+b) @classmethod can modify class state, @staticmethod cannot
+c) @classmethod is used to create private methods
+d) There is no difference","b) @classmethod can modify class state, @staticmethod cannot"
+102,"What is the output of the following code?
+         print(bool([]), bool([0]), bool(0))","a) False, True, True
+b) False, True, False
+c) True, False, True
+d) True, True, True","b) False, True, False"
+103,"The following python program can work with __ parameters.
+def f(x):
+    def f1(*args, **kwargs):
+           print('Sanfoundry')
+           return x(*args, **kwargs)
+    return f1","a) any number of
+b) 0
+c) 1
+d) 2",a) any number of
+104,"What will be the output of the following Python code?
+1.	class tester:
+2.	    def _init_(self, id):
+3.	        self.id = str(id)
+4.	        id='224'
+5.	 
+6.	>>>temp = tester(12)
+7.	>>>print(temp.id)","a) 12
+b) 224
+c) None
+d) Error",a) 12
+105,"What will be the output of the following Python program?
+def foo(x):
+    x[0] = ['def']
+    x[1] = ['abc']
+    return id(x)
+q = ['abc', 'def']
+print(id(q) == foo(q))","a) Error
+b) None
+c) False
+d) True",d) True
+106,"What will be the value of 'result' in the following Python program?
+list1 = [1,2,3,4]
+list2 = [2,4,5,6]
+list3 = [2,6,7,8]
+result = list()
+result.extend(i for i in list1 if i not in (list2+list3) and i not in result)
+result.extend(i for i in list2 if i not in (list1+list3) and i not in result)
+result.extend(i for i in list3 if i not in (list1+list2) and i not in result)","a) [1, 3, 5, 7, 8]
+b) [1, 7, 8]
+c) [1, 2, 4, 7, 8]
+d) error","a) [1, 3, 5, 7, 8]"
+107,"What will be the output of the following Python code snippet?
+my_string = 'hello world'
+k = [(i.upper(), len(i)) for i in my_string]
+print(k)","a) [('HELLO', 5), ('WORLD', 5)]
+b) [('H', 1), ('E', 1), ('L', 1), ('L', 1), ('O', 1), (' ', 1), ('W', 1), ('O', 1), ('R', 1), ('L', 1), ('D', 1)]
+c) [('HELLO WORLD', 11)]
+d) none of the mentioned","b) [('H', 1), ('E', 1), ('L', 1), ('L', 1), ('O', 1), (' ', 1), ('W', 1), ('O', 1), ('R', 1), ('L', 1), ('D', 1)]"
+108,"What will be the output of the following Python code?
+class Demo:
+    def _new(self):
+        self.init(self)
+        print(""Demo's __new() invoked"")
+    def __init(self):
+        print(""Demo's __init() invoked"")
+class Derived_Demo(Demo):
+    def __new(self):
+        print(""Derived_Demo's __new() invoked"")
+    def __init(self):
+        print(""Derived_Demo's __init_() invoked"")
+def main():
+    obj1 = Derived_Demo()
+    obj2 = Demo()
+main()","a) Derived_Demo’s _init() invoked
+Derived_Demo's __new() invoked
+Demo's __init() invoked
+Demo's __new() invoked
+b) Derived_Demo's __new() invoked
+Demo's __init() invoked
+Demo's __new() invoked
+c) Derived_Demo's __new() invoked
+Demo's __new() invoked
+d) Derived_Demo’s __init() invoked
+Demo's __init_() invoked","b) Derived_Demo's _new() invoked
+Demo's __init() invoked
+Demo's __new_() invoked"
+109,"What will be the output of the following Python code?
+class Test:
+    def _init(self):
+        self.x = 0
+class Derived_Test(Test):
+    def __init_(self):
+        self.y = 1
+def main():
+    b = Derived_Test()
+    print(b.x,b.y)
+main()","a) 0 1
+b) 0 0
+c) Error because class B inherits A but variable x isn’t inherited
+d) Error because when object is created, argument must be passed like Derived_Test(1)",c) Error because class B inherits A but variable x isn’t inherited
+110,"What will be the output of the following Python code?
+class A():
+    def disp(self):
+        print(""A disp()"")
+class B(A):
+    pass
+obj = B()
+obj.disp()","a) Invalid syntax for inheritance
+b) Error because when object is created, argument must be passed
+c) Nothing is printed
+d) A disp()",d) A disp()
+111,"Write a list comprehension equivalent for the Python code shown below.
+for i in range(1, 101):
+	if int(i*0.5)==i*0.5:
+		print(i)","a) [i for i in range(1, 100) if int(i*0.5)==(i*0.5)]
+b) [i for i in range(1, 101) if int(i*0.5)==(i*0.5)]
+c) [i for i in range(1, 101) if int(i*0.5)=(i*0.5)]
+d) [i for i in range(1, 100) if int(i*0.5)=(i*0.5)]","b) [i for i in range(1, 101) if int(i*0.5)==(i*0.5)]"
+112,"What is the list comprehension equivalent for: list(map(lambda x:x**-1, [1, 2, 3]))?","a) [1|x for x in [1, 2, 3]]
+b) [-1*x for x in [1, 2, 3]]
+c) [x*-1 for x in [1, 2, 3]]
+d) [x^-1 for x in range(4)]","c) [x**-1 for x in [1, 2, 3]]"
+113,"What will be the output of the following Python code?
+1. def f(x, y, z): return x + y + z
+2. f(2, 30, 400)","a) 432
+b) 24000
+c) 430
+d) No output",a) 432
+114,"What will be the output of the following Python code?
+1. def writer():
+2. 	title = 'Sir'
+3. 	name = (lambda x:title + ' ' + x)
+4. 	return name
+5. 
+6. who = writer()
+7. print(who('Arthur'))","a) Arthur Sir
+b) Sir Arthur
+c) Arthur
+d) None of the mentioned",b) Sir Arthur
+115,"What will be the output of the following Python code?
+1. L = [lambda x: x * 2,
+2. 	lambda x: x * 3,
+3. 	lambda x: x ** 4]
+4. 
+5. for f in L:
+6. 	print(f(3))","a) 27
+b) 6
+c) 9
+d) 81
+","c) 9
+27
+81"
+116,"What will be the output of the following Python code?
+1. min = (lambda x, y: x if x < y else y)
+2. min(101*99, 102*98)","a) 9997
+b) 9999
+c) 9996
+d) None of the mentioned",c) 9996
+117,What is the correct syntax for defining a lambda function in Python?,"A) lambda x: x + 1
+B) lambda x => x + 1
+C) def lambda x: x + 1
+D) function(x) x + 1",A) lambda x: x + 1
+118,"What is the output of the following code?
+def func(x, y=[]):
+    y.append(x)
+    return y
+
+print(func(1))
+print(func(2))","A) [1] [2]
+B) [1] [1, 2]
+C) Error
+D) [1] [None]","B) [1] [1, 2]"
+119,Which of the following function converts an object to a string in Python?,"A) repr()
+B) str()
+C) format()
+D) stringify()",B) str()
+120,What is the correct way to remove an element from a set in Python?,"A) set.remove(x)
+B) set.discard(x)
+C) del set[x]
+D) set.pop(x)",A) set.remove(x)
+121,"What is the output of the following code?
+x = [1, 2, 3, 4]
+x[1:3] = [5, 6, 7]
+print(x)","A) [1, 5, 6, 7, 4]
+B) [1, 5, 7, 4]
+C) [1, 2, 3, 4]
+D) Error","A) [1, 5, 6, 7, 4]"
+122,Which of the following modules is used to generate random numbers in Python?,"A) math
+B) random
+C) numbers
+D) time",B) random
+123,What does the _init_ method do in Python classes?,"A) Initializes a class variable
+B) Initializes an instance variable
+C) Acts as a destructor
+D) Handles inheritance",B) Initializes an instance variable
+124,"What will be the output of the following code?
+def f(x, lst=[]):
+    lst.append(x)
+    return lst
+
+print(f(1))
+print(f(2))
+print(f(3, []))","A) [1] [1, 2] [3]
+B) [1] [2] [3]
+C) [1] [2] []
+D) [1] [1, 2] [1, 2, 3]","A) [1] [1, 2] [3]"
+125,Which of the following statements is true regarding Python functions?,"A) A function can return multiple values
+B) A function can only return a single value
+C) A function can return no value
+D) Both A and C",D) Both A and C
+126,"What will be the output of the following code?
+def func(a, b):
+    return a + b
+
+print(func('1', '2'))","A) 3
+B) 12
+C) '12'
+D) Error",C) '12'
+127,"What will be the output of the following code?
+x = [1, 2, 3]
+y = [x] * 3
+y[0][0] = 100
+print(y)","A) [[100, 2, 3], [1, 2, 3], [1, 2, 3]]
+B) [[100, 2, 3], [100, 2, 3], [100, 2, 3]]
+C) [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+D) Error","B) [[100, 2, 3], [100, 2, 3], [100, 2, 3]]"
+128,"What is the output of the following code?
+def f(x, y=[]):
+    y.append(x)
+    return y
+
+print(f(1))
+print(f(2))
+print(f(3))","A) [1] [2] [3]
+B) [1] [1, 2] [1, 2, 3]
+C) [1] [1, 2] [3]
+D) Error","B) [1] [1, 2] [1, 2, 3]"
+129,"What will be the output of the following code?
+def func(a, b=[]):
+    b.append(a)
+    return b
+
+print(func(1))
+print(func(2))
+print(func(3, []))","A) [1] [2] [3]
+B) [1] [1, 2] [3]
+C) [1] [1, 2] [1, 2, 3]
+D) [1] [1, 2] [3]","B) [1] [1, 2] [3]"
+130,"What will be the output of the following code?
+a = 10
+def foo():
+    a = 5
+    a += 1
+    return a
+
+print(foo())
+print(a)","A) 6 10
+B) 6 6
+C) 5 10
+D) Error",A) 6 10
+131,"What will be the output of the following code?
+x = 10
+def foo():
+    global x
+    x = x + 1
+
+foo()
+print(x)","A) 10
+B) 11
+C) Error
+D) None",B) 11
+132,"What is the result of the following code?
+x = ""abc""
+y = ""abc""
+print(x is y)","A) True
+B) False
+C) Error
+D) None",A) True
+133,"What will be the output of the following code?
+x = (1, 2, 3)
+y = (1, 2, 3)
+print(x is y)","A) True
+B) False
+C) Error
+D) None",B) False
+134,"What will be the result of the following code?
+x = [1, 2, 3]
+y = x.copy()
+y[0] = 100
+print(x, y)","A) [1, 2, 3] [100, 2, 3]
+B) [100, 2, 3] [100, 2, 3]
+C) Error
+D) None","A) [1, 2, 3] [100, 2, 3]"
+135,"What will be the output of the following code?
+def foo(a, b, c=10):
+    print(a, b, c)
+
+foo(5, c=20)","A) Error
+B) 5 20 10
+C) Error due to missing positional argument
+D) 5 0 20",A) Error
+136,"What is the result of the following code?
+x = 'abcd'
+print(list(x[i] for i in range(len(x))))","A) ['abcd']
+B) ['a', 'b', 'c', 'd']
+C) ['a']
+D) Error","B) ['a', 'b', 'c', 'd']"
+137,"What will be the output of the following code?
+def func(x, y):
+    return x if x > y else y
+
+print(func(2, 3))
+print(func(5, 1))","A) 3 5
+B) 2 1
+C) 1 5
+D) Error",A) 3 5
+138,"What will be the result of the following code?
+x = 'abcdef'
+print(x[::2])","A) 'ab'
+B) 'ace'
+C) 'bdf'
+D) 'None'",B) 'ace'
+139,"What will be the output of the following code?
+x = [i**2 for i in range(5) if i % 2 == 0]
+print(x)","A) [0, 4, 16]
+B) [0, 16]
+C) [0, 1, 4]
+D) [0, 4]","A) [0, 4, 16]"
+140,"What is the result of the following code? def foo(a, b=[]): b.append(a) return b print(foo(1)) print(foo(2))","a) [1], [2]
+b) [1], [1, 2]
+c) [2], [1, 2]
+d) Error","b) [1], [1, 2]"
+141,"What will the following code output? class A: def _init(self, a): self.a = a def __add_(self, other): return self.a + other.a x = A(5) y = A(10) print(x + y)","a) 5
+b) 10
+c) 15
+d) Error",c) 15
+142,Which of the following best describes Python's garbage collection mechanism?,"a) It uses reference counting and generational garbage collection
+b) It uses a mark-and-sweep algorithm
+c) It collects unused memory blocks during execution
+d) It must be manually triggered",a) It uses reference counting and generational garbage collection
+143,What does the nonlocal keyword do in Python?,"a) It allows access to variables in the global scope
+b) It allows access to variables in the outer (enclosing) scope
+c) It creates a new variable in the local scope
+d) It defines a constant",b) It allows access to variables in the outer (enclosing) scope
+144,What is the result of the following code? def foo(): try: return 1 finally: return 2 print(foo()),"a) 1
+b) 2
+c) None
+d) Error",b) 2
+145,What is the primary difference between a deepcopy() and a shallow copy() in Python?,"a) deepcopy() creates independent copies of nested objects, while shallow copy() copies only top-level objects
+b) shallow copy() creates independent copies of nested objects, while deepcopy() copies only top-level objects
+c) deepcopy() is faster than shallow copy()
+d) shallow copy() can only copy immutable objects","a) deepcopy() creates independent copies of nested objects, while shallow copy() copies only top-level objects"
+146,What is the purpose of the _slots_ declaration in a Python class?,"a) It defines methods for the class
+b) It limits the instance attributes
+c) It controls inheritance behaviour
+d) It makes a class immutable",b) It limits the instance attributes
+147,What will be the output of the following code? class A: def foo(self): return 'foo' class B(A): pass b = B() print(b.foo()),"a) 'foo'
+b) Error, no method foo in class B
+c) TypeError
+d) None",a) 'foo'
+148,What will be the result of the following code? x = 10 def outer(): x = 20 def inner(): nonlocal x x = 30 inner() print(x) outer() print(x),"a) 30, 10
+b) 20, 10
+c) 30, 30
+d) Error","a) 30, 10"
+149,Which of the following best describes the role of the inspect module in Python?,"a) It provides introspection capabilities for live objects
+b) It helps manage multi-threading
+c) It optimizes memory usage
+d) It compiles Python code into bytecode",a) It provides introspection capabilities for live objects
+150,"What will be the output of the following code? x = [1, 2, 3] y = x[:] x[0] = 100 print(y)","A) [1, 2, 3]
+B) [100, 2, 3]
+C) Error
+D) None","A) [1, 2, 3]"
+151,What will be the output of this code? class A: def _init_(self): self.x = 1 def update(self): self.x += 1 a = A() b = A() a.update() print(b.x),"a) 1
+b) 2
+c) Error
+d) None",a) 1
+152,"What will be the result of the following code ? class A: def _init_(self, x): self.x = x a = A(5) a.x = 10 print(a.x)","a) 5
+b) 10
+c) Error
+d) None",b) 10
+153,Which of the following Python expressions is not valid?,"a) [x*2 for x in range(5)]
+b) (x2 for x in range(5))
+c) {x: x2 for x in range(5)}
+d) x: x*2 for x in range(5)",d) x: x**2 for x in range(5)
+154,Which of the following correctly defines a lambda function in Python?,"a) lambda x, y: x + y
+b) lambda(x, y) { return x + y; }
+c) def lambda(x, y): return x + y
+d) def(x, y): return x + y","a) lambda x, y: x + y"
+155,What does the following code do ? def f(): pass print(f()),"a) None
+b) 0
+c) Error
+d) ''",a) None
+156,What will be the output for the code ? def foo(): return [lambda x: x + i for i in range(5)] funcs = foo() print(funcs),"a) 0
+b) 1
+c) 4
+d) None",c) 4
+157,"What will the following code output? def foo(a, *args, b=10, **kwargs): print(a, args, b, kwargs) foo(1, 2, 3, b=5, c=20)","a) 1 (2, 3) 10 {'b': 5, 'c': 20}
+b) 1 (2, 3) 5 {'c': 20}
+c) 1 2 3 5 {'c': 20}
+d) Error","b) 1 (2, 3) 5 {'c': 20}"
+158,Which of the following is not a valid method for file objects in Python?,"a) read()
+b) write()
+c) close()
+d) flush()",d) flush()
+159,"What does the following code do ? import re pattern = r'[A-Z][a-z]+' text = 'JohnDoe' match = re.search(pattern, text) print(match.group())","a) 'John'
+b) 'Doe'
+c) 'JohnDoe'
+d) Error",a) 'John'
+160,"What is the result of the code ?
+class A:
+    def f(self):
+        return 'A'
+class B(A):
+    def f(self):
+        return 'B'
+a = A()
+b = B()
+print(a.f(), b.f())","a) A A
+b) A B
+c) B A
+d) Error",b) A B
+161,"What is the output of the following code ?
+def generator():
+    yield 1
+    yield 2
+    yield 3
+g = generator()
+print(next(g))
+print(next(g))","a) 1 2
+b) [1, 2, 3]
+c) 1, Stop Iteration
+d) Error",a) 1 2
+162,Which of the following is used to create an alias for a module in Python?,"a) as
+b) import
+c) from
+d) alias",a) as
+163,Which of the following is not a valid Python file mode?,"a) 'r+'
+b) 'a+'
+c) 'x+'
+d) 'rw'",d) 'rw'
+164,Which Python module is used for multithreading?,"a) os
+b) threading
+c) multiprocessing
+d) sys",b) threading
+165,What is the purpose of the gc module in Python?,"a) Manages file input and output
+b) Handles exceptions
+c) Interfaces with the garbage collector
+d) Manages system signals",c) Interfaces with the garbage collector
+166,What is the time complexity of the in operator when checking membership in a list?,"a) O(1)
+b) O(log n)
+c) O(n)
+d) O(n^2)",c) O(n)
+167,"What is the output of the following code ?
+import re
+s = 'The rain in Spain'
+result = re.search(r'\bS\w+', s)
+print(result.group())","a) 'Spain'
+b) 'rain'
+c) 'in'
+d) None",a) 'Spain'
+168,"What will be the result of the following code?
+def func(a, b=2, c=3):
+    return a + b + c
+print(func(1, c=10))","a) 16
+b) 12
+c) 6
+d) Error",a) 16
+169,"What will be the output of the following code ?
+print(0.1 + 0.2 == 0.3)","a) True
+b) False
+c) Error
+d) None",b) False
+170,"What will be the output of the following code?
+x = {1: 'a', 2: 'b'}
+y = x.copy()
+y[1] = 'z'
+print(x)","A) {1: 'a', 2: 'b'}
+B) {1: 'z', 2: 'b'}
+C) Error
+D) None","A) {1: 'a', 2: 'b'}"
+171,"What will be the output of the following code?
+x = {1, 2, 3}
+x.add(4)
+x.add(4)
+print(x)","A) {1, 2, 3, 4}
+B) Error
+C) {1, 2, 3}
+D) None","A) {1, 2, 3, 4}"
+172,"What will be the output of the following code?
+x = {1, 2, 3}
+x.update([4, 5])
+print(x)","A) {1, 2, 3, 4, 5}
+B) Error
+C) {4, 5}
+D) None","A) {1, 2, 3, 4, 5}"
+173,"What will be the output of the following code?
+x = {i: i**2 for i in range(3)}
+print(x)","A) {0: 0, 1: 1, 2: 4}
+B) [0, 1, 2]
+C) Error
+D) {1: 1, 2: 4}","A) {0: 0, 1: 1, 2: 4}"
+174,"What will be the output of the following code?
+x = [i for i in range(10) if i % 2 == 0]
+print(x)","A) [0, 2, 4, 6, 8]
+B) [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+C) []
+D) [2, 4, 6, 8, 10]","A) [0, 2, 4, 6, 8]"
+175,"What will be the output of the following code?
+x = [1, 2, 3, 4, 5]
+y = [i for i in x if i % 2 == 0]
+print(y)","A) [2, 4]
+B) [1, 3, 5]
+C) [1, 2, 3, 4, 5]
+D) Error","A) [2, 4]"
+176,"What will be the output of the following code?
+x = (i for i in range(5))
+print(next(x))
+print(next(x))","A) 0 1
+B) [0, 1]
+C) 0 0
+D) Error",A) 0 1
+177,"What will be the output of the following code?
+x = [i**2 for i in range(5)]
+print(x)","A) [0, 1, 4, 9, 16]
+B) [1, 4, 9, 16]
+C) [1, 2, 3, 4]
+D) Error","A) [0, 1, 4, 9, 16]"
+178,"What will be the output of the following code?
+x = {1: 'a', 2: 'b', 3: 'c'}
+del x[1]
+print(x)","A) {2: 'b', 3: 'c'}
+B) {1: 'a', 3: 'c'}
+C) Error
+D) None","A) {2: 'b', 3: 'c'}"
+179,"What will be the output of the following code?
+x = [1, 2, 3]
+y = x
+y[0] = 100
+print(x)","A) [100, 2, 3]
+B) [1, 2, 3]
+C) Error
+D) None","A) [100, 2, 3]"
+180,"What will be the output of the following code?
+x = [1, 2, 3]
+y = x.copy()
+y[0] = 100
+print(x, y)","A) [1, 2, 3] [100, 2, 3]
+B) [100, 2, 3] [100, 2, 3]
+C) Error
+D) None","A) [1, 2, 3] [100, 2, 3]"
+181,"What will be the output of the following code?
+x = [1, 2, 3]
+y = x
+x += [4]
+print(x, y)","A) [1, 2, 3, 4] [1, 2, 3]
+B) [1, 2, 3, 4] [1, 2, 3, 4]
+C) Error
+D) None","A) [1, 2, 3, 4] [1, 2, 3, 4]"
+182,"What will be the output of the following code?
+x = (1, 2, 3)
+y = list(x)
+y[0] = 100
+print(y)","A) [100, 2, 3]
+B) (100, 2, 3)
+C) Error
+D) None","A) [100, 2, 3]"
+183,"What will be the output of the following code?
+x = (1, 2, 3)
+y = (4, 5, 6)
+print(x + y)","A) (1, 2, 3, 4, 5, 6)
+B) [1, 2, 3, 4, 5, 6]
+C) Error
+D) None","A) (1, 2, 3, 4, 5, 6)"
+184,"What will be the output of the following code?
+x = {i: i**2 for i in range(3)}
+y = x.keys()
+print(y)","A) [0, 1, 2]
+B) dict_keys([0, 1, 2])
+C) Error
+D) None","B) dict_keys([0, 1, 2])"
+185,"What will be the output of the following code?
+x = [1, 2, 3, 4, 5]
+y = x[1:-1]
+print(y)","A) [2, 3, 4]
+B) [1, 2, 3, 4, 5]
+C) [2, 3]
+D) [2, 3, 4, 5]","A) [2, 3, 4]"
+186,"What will be the output of the following code?
+def f(x):
+    return x * x
+
+x = [1, 2, 3]
+y = [f(i) for i in x]
+print(y)","A) [1, 4, 9]
+B) [2, 4, 6]
+C) [3, 6, 9]
+D) Error","A) [1, 4, 9]"
+187,"What will be the output of the following code?
+x = [1, 2, 3]
+y = [x] * 3
+x[1] = 100
+print(y)","A) [[1, 100, 3], [1, 2, 3], [1, 2, 3]]
+B) [[1, 100, 3], [1, 100, 3], [1, 100, 3]]
+C) [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+D) Error","B) [[1, 100, 3], [1, 100, 3], [1, 100, 3]]"
+188,Which of the following is used to access an environment variable in Python?,"a) os.environ(), b) os.getenv(), c) os.setenv(), d) os.env()",b)
+189,"What is the output of this Python code?
+s = 'hello'
+print(s[0].upper() + s[1:])","a) Hello, b) hello, c) HELLO, d) Error",a)
+190,"What will be the result of the following Python code?
+class A:
+    def f(self):
+        return 'A'
+class B(A):
+    pass
+b = B()
+print(b.f())","a) A, b) B, c) None, d) Error",a)
+191,"What will be the output of the following code?
+a = [1, 2, 3]
+b = [a, a]
+b[0][1] = 10
+print(b)","A) [[1, 10, 3], [1, 2, 3]], B) [[1, 10, 3], [1, 10, 3]], C) [[1, 2, 3], [1, 2, 3]], D) Error","B) [[1, 10, 3], [1, 10, 3]]"
+192,"What will be the output of the following code?
+x = 5
+def foo(x):
+    return lambda y: x + y
+a = foo(10)
+print(a(20))","A) 15, B) 30, C) 25, D) Error",C) 25
+193,"What will be the output of the following code?
+def func(lst=[]):
+    lst.append(1)
+    return lst
+print(func())
+print(func())","A) [1] [1, 1], B) [1] [1], C) [1, 1] [1, 1], D) Error","A) [1] [1, 1]"
+194,"What will be the output of the following code?
+def f(x):
+    return x * x
+
+x = [1, 2, 3, 4]
+y = map(f, x)
+print(list(y))","A) [1, 2, 3, 4], B) [1, 4, 9, 16], C) Error, D) [1, 4, 9]","B) [1, 4, 9, 16]"
+195,"What will be the output of the following code?
+a = [1, 2, 3]
+b = a
+a = a + [4, 5]
+print(b)","A) [1, 2, 3], B) [1, 2, 3, 4, 5], C) Error, D) None","A) [1, 2, 3]"
+196,"What will be the output of the following code?
+def outer(x):
+    def inner(y):
+        return x + y
+    return inner
+a = outer(10)
+print(a(5))
+print(a(10))","A) 10 20, B) 15 20, C) None, D) Error",B) 15 20
+197,"What will be the output of the following code?
+x = [1, 2, 3]
+y = [i**2 for i in x]
+print(y)","A) [1, 4, 9], B) [2, 3], C) [1, 2, 3], D) [2, 3, 4]","A) [1, 4, 9]"
+198,"What will be the output of the following code?
+def f(x):
+    return x // 2
+
+x = [5, 8, 12]
+y = list(map(f, x))
+print(y)","A) [2, 4, 6], B) [2, 4, 5], C) [2, 3, 6], D) Error","A) [2, 4, 6]"
+199,"What will be the output of the following code?
+x = [1, 2, 3]
+y = [x] * 3
+x[0] = 100
+print(y)","A) [[100, 2, 3], [1, 2, 3]], B) [[100, 2, 3], [100, 2, 3]], C) [[1, 2, 3], [1, 2, 3]], D) Error","B) [[100, 2, 3], [100, 2, 3]]"
+200,"What will be the output of the following code?
+a = [1, 2, 3]
+b = a[:]
+b[0] = 100
+print(a)","A) [100, 2, 3], B) [1, 2, 3], C) Error, D) None","B) [1, 2, 3]"
+201,"What will be the output of the following code?
+x = 10
+y = [lambda: x + i for i in range(3)]
+print([f() for f in y])","A) [10, 11, 12], B) [12, 12, 12], C) [10, 11, 12, 13], D) Error","B) [12, 12, 12]"
+202,"What will be the output of the following code?
+a = [1, 2, 3]
+b = a
+
+a[0] = 100
+print(b)","A) [100, 2, 3], B) [1, 2, 3], C) Error, D) None","A) [100, 2, 3]"
+203,"What will be the output of the following code?
+x = [(1, 2), (3, 4), (5, 6)]
+x.sort(key=lambda y: y[1], reverse=True)
+print(x)","A) [(1, 2), (3, 4), (5, 6)], B) [(5, 6), (3, 4), (1, 2)], C) [(1, 2), (5, 6), (3, 4)], D) Error","B) [(5, 6), (3, 4), (1, 2)]"
+204,"What will be the output of the following code?
+x = [(1, 2), (3, 4), (5, 6)]
+x[0][1] = 100
+print(x)","A) [(1, 100), (3, 4), (5, 6)], B) Error, C) [(1, 2), (3, 4), (5, 6)], D) None",B) Error
+205,"What will be the output of the following code?
+x = [1, 2, 3, 4, 5]
+print(x[1:3])","A) [2, 3], B) [1, 2], C) [1, 2, 3], D) [2, 3, 4]","B) [2, 3]"
+206,"What will be the output of the following code?
+x = (1, 2, 3, [4, 5])
+x[3].append(6)
+print(x)","A) (1, 2, 3, [4, 5, 6]), B) Error, C) (1, 2, 3, [6]), D) None","A) (1, 2, 3, [4, 5, 6])"
+207,"What will be the output of the following code?
+x = 0
+for i in range(5):
+    x += i
+print(x)","A) 10, B) 0, C) 5, D) 15",A) 10
