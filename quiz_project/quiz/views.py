@@ -247,14 +247,15 @@ from reportlab.lib.units import inch
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import logging
-
-logger = logging.getLogger(__name__)
-
 @login_required(login_url='login')
 def generate_pdf(request):
+    # Retrieve assessment data from session
     assessment_data = request.session.get('assessment_data')
     email = request.user.email  # Assuming the email is saved in the User model
     
+    # Log the assessment data to ensure it's being retrieved correctly
+    logger.debug("Assessment Data Retrieved: %s", assessment_data)
+
     if not assessment_data:
         logger.error("No assessment data found in session.")
         return HttpResponse("No assessment data found.", status=400)
@@ -297,17 +298,23 @@ def generate_pdf(request):
         p.drawString(1 * inch, 7.9 * inch, f"Total Questions Attempted: {assessment_data['total_attempted']}")
         p.drawString(1 * inch, 7.7 * inch, f"Correct Answers: {assessment_data['correct_count']}")
         p.drawString(1 * inch, 7.5 * inch, f"Wrong Answers: {assessment_data['wrong_count']}")
-        
-        # Display Difficulty Breakdown with Highlighted Colors
-        # p.setFont("Helvetica-Bold", 12)
-        # p.setFillColor(colors.green)
-        # p.drawString(1 * inch, 7.4 * inch, f"Easy Questions: {assessment_data['easy_count']}")
-        
-        # p.setFillColor(colors.orange)
-        # p.drawString(1 * inch, 7.2 * inch, f"Medium Questions: {assessment_data['medium_count']}")
-        
-        # p.setFillColor(colors.red)
-        # p.drawString(1 * inch, 7.0 * inch, f"Hard Questions: {assessment_data['hard_count']}")
+
+        # Add Detected Objects to the PDF
+        if 'detected_objects' in assessment_data:
+            p.setFont("Helvetica-Bold", 12)
+            p.setFillColor(colors.black)
+            p.drawString(1 * inch, 6.5 * inch, "Detected Objects:")
+            y_position = 6.3 * inch
+
+            # Log detected objects
+            logger.debug("Detected Objects: %s", assessment_data['detected_objects'])
+
+            # Print detected objects and probabilities in the PDF
+            for obj, prob in assessment_data['detected_objects']:
+                p.drawString(1 * inch, y_position, f"- {obj}: {prob}%")
+                y_position -= 0.2 * inch  # Adjust for space between entries
+        else:
+            logger.warning("No detected objects found in assessment data.")
 
         # Add Footer
         p.setFillColor(colors.gray)
@@ -325,6 +332,128 @@ def generate_pdf(request):
         return HttpResponse("Error generating PDF.", status=500)
 
     return response
+
+
+# import cv2
+# import numpy as np
+
+# # Load pre-trained YOLO model
+# net = cv2.dnn.readNet("quiz/templates/quiz/yolov3.weights", "quiz/templates/quiz/yolov3.cfg")
+# layer_names = net.getLayerNames()
+# output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
+
+# # Load COCO class labels
+# with open("quiz/templates/quiz/coco.names", "r") as f:
+#     classes = [line.strip() for line in f.readlines()]
+
+# # Initialize the webcam (0 refers to the default camera)
+# cap = cv2.VideoCapture(0)
+
+# # Create a small window with a specified name
+# cv2.namedWindow("Live Detection", cv2.WINDOW_NORMAL)
+
+# while True:
+#     # Capture each frame from the camera
+#     ret, frame = cap.read()
+
+#     # If frame is not successfully captured, break out of the loop
+#     if not ret:
+#         print("Failed to grab frame")
+#         break
+
+#     # Convert the frame to grayscale for face and pedestrian detection
+#     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+#     # Detect faces
+#     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+#     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+#     # Detect objects using YOLO
+#     blob = cv2.dnn.blobFromImage(frame, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+#     net.setInput(blob)
+#     outs = net.forward(output_layers)
+
+#     # Process YOLO detections
+#     class_ids = []
+#     confidences = []
+#     boxes = []
+
+#     for out in outs:
+#         for detection in out:
+#             scores = detection[5:]
+#             class_id = np.argmax(scores)
+#             confidence = scores[class_id]
+#             if confidence > 0.5:  # Confidence threshold
+#                 center_x = int(detection[0] * frame.shape[1])
+#                 center_y = int(detection[1] * frame.shape[0])
+#                 w = int(detection[2] * frame.shape[1])
+#                 h = int(detection[3] * frame.shape[0])
+
+#                 x = int(center_x - w / 2)
+#                 y = int(center_y - h / 2)
+
+#                 boxes.append([x, y, w, h])
+#                 confidences.append(float(confidence))
+#                 class_ids.append(class_id)
+
+#     # Apply Non-Maximum Suppression (NMS) to remove redundant overlapping boxes
+#     indices = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)  # Adjust NMS threshold as needed
+
+#     # Capture the detected faces and objects (No rectangles drawn here)
+#     detected_faces = []
+#     detected_objects = []
+
+#     # Collect detected faces
+#     for (x, y, w, h) in faces:
+#         detected_faces.append((x, y, w, h))  # Store coordinates of detected faces
+
+#     # Collect detected objects
+#     if len(indices) > 0:
+#         for i in indices.flatten():
+#             x, y, w, h = boxes[i]
+#             label = str(classes[class_ids[i]])
+#             confidence_text = f'{round(confidences[i] * 100, 2)}%'  # Display confidence percentage
+#             detected_objects.append((label, confidence_text, (x, y, w, h)))
+
+#     # Prepare the box for displaying detected objects information
+#     output_text = ""
+#     for obj in detected_objects:
+#         output_text += f"{obj[0]}: {obj[1]}\n"
+
+#     # Draw the small box on the right side of the screen
+#     if output_text:
+#         height, width, _ = frame.shape
+#         # Create a small box area on the right side of the screen
+#         box_width = 250  # Adjust width for longer text
+#         box_height = 200  # Adjust height for text
+#         box_x = width - box_width - 10  # Position box at the right side
+#         box_y = 20  # Distance from the top
+
+#         # Draw a rectangle to create the box
+#         cv2.rectangle(frame, (box_x, box_y), (box_x + box_width, box_y + box_height), (0, 0, 0), -1)
+
+#         # Place the output text inside the small box
+#         cv2.putText(frame, output_text, (box_x + 10, box_y + 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+
+#     # Optionally, you can process the detected_faces and detected_objects as needed
+#     for face in detected_faces:
+#         print(f"Detected face: {face}")
+#     for obj in detected_objects:
+#         print(f"Detected object: {obj[0]} with confidence: {obj[1]} at position: {obj[2]}")
+
+#     # Display the frame without resizing
+#     cv2.imshow("Live Detection", frame)
+
+#     # Move the window to the right side of the screen
+#     cv2.moveWindow("Live Detection", 1000, 100)  # Adjust the window position as needed
+
+#     # Exit the loop if the user presses the 'q' key
+#     if cv2.waitKey(1) & 0xFF == ord('q'):
+#         break
+
+# # Release the webcam and close all OpenCV windows
+# cap.release()
+# cv2.destroyAllWindows()
 
 
 @login_required(login_url='login')
@@ -359,15 +488,14 @@ def login_view(request):
         password = request.POST.get('password')
         email = request.POST.get('email')  # Get email from form
 
-        # Authenticate the user
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            # User exists and password is correct
+
             login(request, user)  # Log the user in
             return redirect('exam')  # Redirect to the exam page
         else:
-            # Check if the username already exists
+
             try:
                 existing_user = User.objects.get(username=username)
                 messages.error(request, 'Username already exists. Please choose a different username.')  # User already exists
@@ -398,3 +526,128 @@ def exam_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+@login_required(login_url='login')
+def capture_view(request):
+    return render(request, 'quiz/capture.html')
+
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import cv2
+import numpy as np
+from io import BytesIO
+from PIL import Image
+
+net = cv2.dnn.readNet("quiz/templates/quiz/yolov3.weights", "quiz/templates/quiz/yolov3.cfg")
+layer_names = net.getLayerNames()
+output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
+
+with open("quiz/templates/quiz/coco.names", "r") as f:
+    classes = [line.strip() for line in f.readlines()]
+
+import cv2
+import numpy as np
+
+def detect_objects(image, net, output_layers, classes):
+    blob = cv2.dnn.blobFromImage(image, 0.00392, (416, 416), (0, 0, 0), True, crop=False)
+    net.setInput(blob)
+    outs = net.forward(output_layers)
+
+    class_ids = []
+    confidences = []
+    boxes = []
+    height, width, _ = image.shape
+
+    for out in outs:
+        for detection in out:
+            scores = detection[5:]
+            class_id = np.argmax(scores)
+            confidence = scores[class_id]
+            if confidence > 0.5:  # Confidence threshold
+                center_x = int(detection[0] * width)
+                center_y = int(detection[1] * height)
+                w = int(detection[2] * width)
+                h = int(detection[3] * height)
+
+                x = int(center_x - w / 2)
+                y = int(center_y - h / 2)
+
+                boxes.append([x, y, w, h])
+                confidences.append(float(confidence))
+                class_ids.append(class_id)
+
+    # Apply NMS
+    indices = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+
+    detected_objects = []
+    if len(indices) > 0:
+        for i in indices.flatten():
+            x, y, w, h = boxes[i]
+            label = str(classes[class_ids[i]])  # Get the label
+            confidence = round(confidences[i] * 100, 2)
+            detected_objects.append({"label": label, "confidence": confidence, "box": [x, y, w, h]})
+
+    return detected_objects
+
+import cv2
+import numpy as np
+from django.http import JsonResponse
+
+net = cv2.dnn.readNet("quiz/templates/quiz/yolov3.weights", "quiz/templates/quiz/yolov3.cfg")
+layer_names = net.getLayerNames()
+output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
+classes = []  # Load your class names from the file
+with open("quiz/templates/quiz/coco.names", "r") as f:
+    classes = [line.strip() for line in f.readlines()]
+
+# Your view function to handle POST requests
+from fpdf import FPDF
+import cv2
+import numpy as np
+
+def detect_objects_view(request):
+    if request.method == 'POST':
+        try:
+            # Get image from the request (assuming it's base64 encoded or as a file upload)
+            image = request.FILES['image']  # If the image is uploaded via a form
+            image = cv2.imdecode(np.frombuffer(image.read(), np.uint8), cv2.IMREAD_COLOR)
+            
+            # Perform object detection
+            objects = detect_objects(image, net, output_layers, classes)
+            
+            # Calculate accuracy (just a sample example here)
+            total_objects = len(objects)
+            correct_objects = sum([1 for obj in objects if obj['confidence'] > 70])  # Example condition for correct objects
+            accuracy = (correct_objects / total_objects * 100) if total_objects > 0 else 0
+
+            # Generate the PDF report
+            pdf = FPDF()
+            pdf.add_page()
+
+            # Add the assessment summary
+            pdf.set_font('Arial', 'B', 16)
+            pdf.cell(200, 10, txt="Online MCQ Evaluator Assessment Report", ln=True, align='C')
+
+            pdf.set_font('Arial', '', 12)
+            pdf.cell(200, 10, txt="Username: Supriya123", ln=True)
+            pdf.cell(200, 10, txt="Email ID: supriyavenkata119@gmail.com", ln=True)
+            pdf.cell(200, 10, txt="Total Questions: 30", ln=True)
+            pdf.cell(200, 10, txt="Total Questions Attempted: 0", ln=True)
+            pdf.cell(200, 10, txt="Correct Answers: 0", ln=True)
+            pdf.cell(200, 10, txt="Wrong Answers: 0", ln=True)
+
+            # Add object detection labels and accuracy
+            pdf.cell(200, 10, txt="Object Detection Summary:", ln=True)
+            pdf.set_font('Arial', '', 10)
+            for obj in objects:
+                pdf.cell(200, 10, txt=f"Label: {obj['label']}, Confidence: {obj['confidence']}%", ln=True)
+
+            pdf.cell(200, 10, txt=f"Object Detection Accuracy: {accuracy}%", ln=True)
+
+            # Output PDF to a file or send as response
+            pdf.output("assessment_report.pdf")
+
+            return JsonResponse({'message': 'Report generated successfully.'}, status=200)
+
+        except Exception as e:
+            # Handle any exceptions that may arise
+            return JsonResponse({'error': str(e)}, status=500)
