@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Instructions</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-image: url("https://cdn.pixabay.com/animation/2023/08/21/13/44/13-44-00-887_512.gif");
+            text-align: center;
+            padding: 50px;
+        }
+        /* .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        } */
+        .container {
+            background-color: white; /*Light blue color */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            /* text-align: center; */
+            display: inline-block;
+            /* background-color: rgba(175, 238, 238, 0.5); Light blue color */
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+        ul {
+            text-align: left;
+            margin: 0 auto;
+            padding: 0;
+            list-style-type: none;
+        }
+        li {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        li::before {
+            content: '➔';
+            position: absolute;
+            left: 0;
+            color: #007BFF;
+            font-size: 18px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color:  #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color:  #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Python Online Assessment</h1>
+        <h2>Hello {{username}}, are you ready to attempt this assessment?</h2>
+        <ul>
+            <li>The test consists of <strong>30 Python questions</strong>.</li>
+            <li>There is a <strong>30-minute time limit</strong>.</li>
+            <li>Read the questions thoroughly before answering.</li>
+            <li>Click on the save button to save your answer.</li>
+            <li>If you wish to review your answer, click on "Mark for Review."</li>
+            <li>To skip a question, click "Next."</li>
+            <li>Once the time is over, the exam will be submitted automatically.</li>
+            <li>Do not open any new tabs during the exam.</li>
+            <li>Refrain from engaging in any malpractice activities.</li>
+            <li>After the exam, a report will be generated.</li>
+            <li>The report will include details of all activities conducted during the assessment, including any malpractice incidents and the marks obtained.</li>
+        </ul>
+        <input type="checkbox" id="instructions-read" required aria-label="Instructions Read">
+        <label for="instructions-read">I have read all the instructions.</label><br>
+        <button onclick="startExam()">Start Exam</button>
+    </div>
+
+    <script>
+        function startExam() {
+            if (document.getElementById('instructions-read').checked) {
+                window.location.href = '{% url "test" %}';
+            }
+        }
+    </script>
+</body>
+</html>

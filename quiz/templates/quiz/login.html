@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url("https://cdn.pixabay.com/animation/2023/08/21/13/44/13-44-00-887_512.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container {
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            background-color: rgba(175, 238, 238, 0.5);
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4A90E2;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #555;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .field-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        label {
+            text-align: right;
+            padding-right: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: #f8f8f8;
+            margin-top: 5px;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            border-color: #4A90E2;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #333;
+        }
+
+        button {
+            background-color: #4A90E2;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 16px;
+            width: 180px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #357ABD;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(1.02);
+        }
+
+        .cap {
+            margin-bottom: 20px;
+        }
+
+        .cap img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid #4A90E2;
+        }
+
+        #statusMessage {
+            color: #ff5733;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                width: 90%;
+            }
+
+            .field-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            label {
+                width: 100%;
+                text-align: left;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cap">
+            <img class="cap" src="https://lh3.googleusercontent.com/pw/AP1GczO0wTkvXyUrXnSu4o_b4wMvhorDZMbueVap6ghAY3xBSzBPRShjBEHRA4Tbrn1vXNTcFdDB7wnQ4eCn0gV7LOj2mJVLBIrK-N9dUrBMFwKG3vlHZg=w2400" alt="Logo">
+        </div>
+        <h1>Online MCQ Evaluator</h1>
+        <h2>Login</h2>
+
+        <form method="POST" action="{% url 'login' %}" id="loginForm">
+            {% csrf_token %}
+            <div class="field-container">
+                <label for="username">Name of the Candidate :</label>
+                <input type="text" name="username" placeholder="Enter Candidate Name" required aria-label="Username">
+            </div>
+            <div class="field-container">
+                <label for="email">Email ID:</label>
+                <input type="email" name="email" placeholder="Enter your email ID" required aria-label="Email ID" 
+                       pattern="^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" 
+                       title="Please enter a valid email address">
+            </div>
+            <div class="field-container">
+                <label for="password">Password:</label>
+                <div class="password-container">
+                    <input type="password" name="password" id="password" placeholder="Password" required aria-label="Password">
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+            </div>
+            <button type="submit" id="loginBtn">Log In</button>
+        </form>
+
+        <div id="capturedImageContainer" style="margin-top: 20px;"></div>
+        <div id="statusMessage"></div> <!-- Placeholder for status messages -->
+    </div>
+
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            passwordField.type = type;
+            this.classList.toggle('fa-eye-slash');
+        });
+    
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();  // Prevent default form submission
+    
+            // Add some form validation if needed, like checking for empty fields
+            const username = document.querySelector('input[name="username"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+    
+            if (username && email && password) {
+                window.location.href = '/capture/';
+            } else {
+                document.getElementById('statusMessage').textContent = 'Please fill in all fields.';
+                document.getElementById('statusMessage').style.color = 'red';
+            }
+        });
+    </script>
+    
+</body>
+</html>

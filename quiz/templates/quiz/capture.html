@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Check with Image Capture</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url("https://cdn.pixabay.com/animation/2023/08/21/13/44/13-44-00-887_512.gif");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(175, 238, 238, 0.5);
+            padding: 40px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4A90E2;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        button {
+            background-color: #4A90E2;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #357ABD;
+        }
+
+        #networkProgress {
+            width: 100%;
+            height: 20px;
+            margin-top: 10px;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        #networkProgressBar {
+            height: 100%;
+            background-color: #4A90E2;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        #networkProgressLabel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+        }
+
+        #videoElement {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        #capturedImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+            display: none;
+        }
+
+        #captureBtn {
+            background-color: #4A90E2;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        #captureBtn:hover {
+            background-color: #357ABD;
+        }
+
+        #nextBtn {
+            display: none;
+            background-color: #4A90E2;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        #nextBtn:hover {
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>System Check with Image Capture</h1>
+        <p class="message" id="message">Checking your system...</p>
+        
+        <!-- Progress Bar for Network Speed Checking -->
+        <div id="networkProgress">
+            <div id="networkProgressBar"></div>
+            <div id="networkProgressLabel">0 Mbps</div> <!-- Added label to show speed -->
+        </div>
+
+        <!-- Video Stream for Image Capture -->
+        <div style="position: relative;">
+            <video id="videoElement" autoplay></video>
+            <img id="capturedImage" src="" alt="Captured Image" />
+        </div>
+
+        <button id="captureBtn" style="display: none;" onclick="captureImage()">Capture Image</button>
+        <button id="nextBtn" style="display: none;" onclick="nextPage()">Next</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            checkNetworkConnection().then(() => {
+                checkSystemCompatibility().then(() => {
+                    document.getElementById('message').innerText = 'System is compatible and network speed is sufficient!';
+                    document.getElementById('captureBtn').style.display = 'inline-block';
+                }).catch(err => {
+                    document.getElementById('message').innerText = err;
+                });
+            }).catch(err => {
+                document.getElementById('message').innerText = 'Network is not available. Please check your connection.';
+            });
+        });
+
+        function checkNetworkConnection() {
+            return new Promise((resolve, reject) => {
+                fetch('https://www.google.com', {mode: 'no-cors'}).then(response => {
+                    resolve(); 
+                }).catch(() => {
+                    reject("Network unavailable.");
+                });
+            });
+        }
+
+        function checkSystemCompatibility() {
+            return new Promise((resolve, reject) => {
+                Promise.all([checkNetworkSpeed(), checkSystemDevices()]).then(() => {
+                    resolve();
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        }
+
+        function checkNetworkSpeed() {
+            return new Promise((resolve, reject) => {
+                let startTime = Date.now();
+                let downloadSize = 500000;
+                let downloadUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png";
+                let img = new Image();
+                img.onload = () => {
+                    let endTime = Date.now();
+                    let duration = (endTime - startTime) / 1000;
+                    let fileSizeInBits = downloadSize * 8;
+                    let speedInBps = fileSizeInBits / duration;
+                    let speedInMbps = speedInBps / (1024 * 1024);
+
+                    if (speedInMbps >= 5) {
+                        updateProgressBar(100, speedInMbps);
+                        resolve();
+                    } else {
+                        updateProgressBar(0, 0);
+                        reject("Network speed is below 5 Mbps.");
+                    }
+                };
+                img.onerror = () => {
+                    updateProgressBar(0, 0);
+                    reject("Failed to measure network speed.");
+                };
+                img.src = downloadUrl;
+
+                let progress = 0;
+                const interval = setInterval(() => {
+                    if (progress < 100) {
+                        progress += 10;
+                        updateProgressBar(progress, 0);
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 300);
+            });
+        }
+
+        function updateProgressBar(percentage, speedInMbps) {
+            const progressBar = document.getElementById('networkProgressBar');
+            const progressLabel = document.getElementById('networkProgressLabel');
+            progressBar.style.width = `${percentage}%`;
+            progressLabel.innerText = `${speedInMbps.toFixed(2)} Mbps`;  // Update the label with speed
+        }
+
+        function checkSystemDevices() {
+            return new Promise((resolve, reject) => {
+                navigator.mediaDevices.enumerateDevices().then(devices => {
+                    let hasVideo = false;
+                    let hasAudio = false;
+                    devices.forEach(device => {
+                        if (device.kind === 'videoinput') hasVideo = true;
+                        if (device.kind === 'audioinput') hasAudio = true;
+                    });
+
+                    if (hasVideo && hasAudio) {
+                        resolve();
+                    } else {
+                        reject("Your system does not have compatible audio/video devices.");
+                    }
+                }).catch(reject);
+            });
+        }
+
+        // Start the video stream
+        function startVideo() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    const videoElement = document.getElementById('videoElement');
+                    videoElement.srcObject = stream;
+                })
+                .catch(error => {
+                    alert("Error accessing the camera: " + error);
+                });
+        }
+
+        function captureImage() {
+            const videoElement = document.getElementById('videoElement');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = videoElement.videoWidth;
+            canvas.height = videoElement.videoHeight;
+            ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+            const imgData = canvas.toDataURL('image/png');
+            const capturedImage = document.getElementById('capturedImage');
+            capturedImage.src = imgData;
+            capturedImage.style.display = 'inline-block';
+
+            // Optionally, you can stop the video stream after capturing the image
+            const stream = videoElement.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+
+            // Show the Next button after image capture
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+
+        function nextPage() {
+            window.location.href = '/exam/';
+        }
+
+        // Start the video on page load
+        startVideo();
+    </script>
+</body>
+</html>
