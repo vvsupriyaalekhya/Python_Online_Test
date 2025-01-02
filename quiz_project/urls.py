@@ -23,7 +23,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('quiz.urls')),  # Root URL points to quiz app URLs
+    path('', include('quiz.urls')),
     path('accounts/', include('allauth.urls')),  # Allauth URLs for account management
 ]
 
