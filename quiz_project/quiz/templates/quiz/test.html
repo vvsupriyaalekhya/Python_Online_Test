@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh; 
+            overflow: hidden;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 5px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 99%; 
+            position: fixed; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        #sidebar {
+    width: 15%; 
+    padding-right: 10px; 
+    display: flex;
+    flex-direction: column; 
+    padding-top: 90px; 
+    height: calc(100vh - 90px); /* Full height minus header height */
+    overflow-y: auto; 
+    background-color: white; 
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
+}
+        #sidebar button {
+            margin-bottom: 10px; 
+            padding: 5px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; 
+            transition: background-color 0.3s;
+            
+        }
+        #sidebar button:hover {
+            background-color: #0056b3; 
+            color: white; 
+        }
+        #container {
+            margin-left: 5%; 
+            width: 85%; 
+            max-width: 900px; 
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-grow: 1; 
+            padding-top: 100px; 
+            padding-bottom: 1px;
+        }
+        #timer {
+            font-size: 2em;
+            text-align: center; 
+            margin-bottom: 20px;
+            transition: color 0.5s; 
+        }
+        .question {
+            background: white;
+            padding: 50px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question-number {
+            font-weight: bold;
+        }
+        button {
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; 
+        }
+        .navigation-buttons button {
+    border-radius: 10px; /* Makes the button corners rounded */
+    padding: 10px 20px; /* Adds padding for a better appearance */
+    background-color: #007BFF; /* Default background color */
+    color: white; /* Text color */
+    font-family: 'Times New Roman', Times, serif;
+    border: none; /* Removes default border */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+    margin: 30px; /* Adds space between buttons */
+}
+
+.navigation-buttons button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarges button on hover */
+}
+
+.navigation-buttons button:active {
+    transform: scale(0.95); /* Slightly shrinks button on click */
+}
+
+
+        .profile-icon {
+            font-size: 25px; 
+            margin-right: 5px; 
+            color: #007BFF; 
+        }
+        .username {
+            margin-left: 5px; 
+            margin-right: 20px; 
+            font-size: 1.4em; 
+        }
+        .hide {
+            display: none; 
+        }
+        .show {
+            display: block; 
+        }
+        .question {
+            margin-bottom: 20px; /* Increases space between question and options */
+        }
+        .question input[type="radio"] {
+            margin: 10px 0; /* Adds space between each radio option */
+        }
+        .question-number {
+            margin-bottom: 15px; /* Adds space between question number and options */
+        }
+        #fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            z-index: 10000;
+        }
+        #fullscreen-button {
+            padding: 10px 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #exit-warning {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none; /* Hidden by default */
+            z-index: 1000; /* Above other elements */
+        }
+    </style>
+</head>
+<body>
+    <div id="fullscreen-overlay">
+        <div>
+            <p>Please enter full-screen mode to attempt this quiz.</p>
+            <button id="fullscreen-button" onclick="requestFullScreen()">Enable Full-Screen Mode</button>
+        </div>
+    </div>
+    <div class="header">
+        <h1>Python Online Assessment</h1>
+        <div class="username"><i class="fas fa-user-circle profile-icon"></i> {{ username }}</div>
+    </div>
+    <div id="sidebar">
+        {% for question in questions %}
+        <button id="btn-{{ forloop.counter0 }}" onclick="showQuestion('{{ forloop.counter0 }}')">{{ forloop.counter }}</button>
+        {% endfor %}
+    </div>
+    <div id="container">
+        <div id="timer">30:00</div>
+        <div id="error-message" style="color: red; display: none;"></div> <!-- Error message placeholder -->
+        <div class="quiz-container">
+            {% for question in questions %}
+            <div class="question hide" id="question-{{ forloop.counter0 }}" data-correct-answer="{{ question.correct_answer }}" data-difficulty="{{ question.difficulty }}">
+                <div class="question-number">{{ forloop.counter }}. {{ question.question_text }}</div>
+                <input type="radio" name="question-{{ forloop.counter }}" value="A"> {{ question.option_a }}<br>
+                <input type="radio" name="question-{{ forloop.counter }}" value="B"> {{ question.option_b }}<br>
+                <input type="radio" name="question-{{ forloop.counter }}" value="C"> {{ question.option_c }}<br>
+                <input type="radio" name="question-{{ forloop.counter }}" value="D"> {{ question.option_d }}<br>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="navigation-buttons">
+            <button onclick="previousQuestion()">Previous</button>
+            <button onclick="saveAnswer()">Save</button>
+            <button onclick="markForReview()">Mark for Review</button>
+            <button onclick="nextQuestion()">Next</button>
+            <button onclick="submitExam()">Submit Exam</button>
+        </div>
+    </div>
+    
+    <div id="exit-warning"></div>
+
+    <script>
+        let currentQuestionIndex = 0;
+        const totalQuestions = '{{ questions|length }}';
+        const timerDisplay = document.getElementById('timer');
+        let timeRemaining = 30 * 60; // Total time in seconds (30 minutes)
+        const alertSound = new Audio('C:/Users/Verukonda Supriya/OneDrive/Desktop/quiz_project/quiz/templates/quiz/alert-sound.mp3'); // Load alert sound (make sure to add a sound file)
+    
+        const userAnswers = new Array(totalQuestions).fill(null);
+        const questionStates = new Array(totalQuestions).fill('unanswered'); // Track state of each question
+    
+        function startTimer() {
+            const interval = setInterval(() => {
+                if (timeRemaining <= 0) {
+                    clearInterval(interval);
+                    submitExam(); // Call submitExam to handle score calculation and redirect
+                } else {
+                    const minutes = Math.floor(timeRemaining / 60);
+                    const seconds = timeRemaining % 60;
+                    timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    timeRemaining--;
+    
+                    if (timeRemaining === 5 * 60) {
+                        timerDisplay.style.color = 'red';
+                        alertSound.play(); 
+                        alert("Hurry up! Time is running out.");
+                    }
+                }
+            }, 1000);
+        }
+    
+        function showQuestion(index) {
+            currentQuestionIndex = parseInt(index, 10);
+            renderQuestion();
+        }
+    
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+    
+        function nextQuestion() {
+            if (currentQuestionIndex < totalQuestions - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+    
+//         function saveAnswer() {
+//     const selectedOption = document.querySelector(`input[name="question-${currentQuestionIndex + 1}"]:checked`);
+//     const errorMessageDiv = document.getElementById('error-message'); // Get the error message div
+//     errorMessageDiv.style.display = 'none'; // Hide the error message initially
+
+//     if (selectedOption) {
+//         userAnswers[currentQuestionIndex] = selectedOption.value; 
+//         questionStates[currentQuestionIndex] = 'saved'; // Update question state
+//         updateButtonState(currentQuestionIndex);
+//     } else {
+//         errorMessageDiv.textContent = "Please select an answer before saving."; // Set the error message text
+//         errorMessageDiv.style.display = 'block'; // Show the error message
+//         renderQuestion(); // Keep the current question displayed
+//         return; // Exit the function to avoid changing the question index
+//     }
+
+//     if (currentQuestionIndex < totalQuestions - 1) {
+//         currentQuestionIndex++;
+//         renderQuestion();
+//     }
+// }
+
+    
+        function markForReview() {
+            questionStates[currentQuestionIndex] = 'review'; // Update question state
+            updateButtonState(currentQuestionIndex);
+            if (currentQuestionIndex < totalQuestions - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+    
+        function renderQuestion() {
+            const questions = document.querySelectorAll('.question');
+            questions.forEach((question, index) => {
+                question.classList.add('hide'); 
+            });
+            const currentQuestion = document.getElementById(`question-${currentQuestionIndex}`);
+            currentQuestion.classList.remove('hide'); 
+            updateButtonState(currentQuestionIndex);
+        }
+    
+        function updateButtonState(index) {
+            const button = document.getElementById(`btn-${index}`);
+            switch (questionStates[index]) {
+                case 'saved':
+                    button.style.backgroundColor = 'lightgreen'; // Light green for saved state
+                    break;
+                case 'review':
+                    button.style.backgroundColor = 'violet'; // Violet for review state
+                    break;
+                default:
+                    button.style.backgroundColor = 'lightblue'; // Light blue for default state
+            }
+        }
+    
+        function saveAnswer() {
+    const selectedOption = document.querySelector(`input[name="question-${currentQuestionIndex + 1}"]:checked`);
+    const errorMessageDiv = document.getElementById('error-message'); // Get the error message div
+    errorMessageDiv.style.display = 'none'; // Hide the error message initially
+
+    if (selectedOption) {
+        userAnswers[currentQuestionIndex] = selectedOption.value; 
+        questionStates[currentQuestionIndex] = 'saved'; // Update question state
+        updateButtonState(currentQuestionIndex);
+    } else {
+        errorMessageDiv.textContent = "Please select an answer before saving."; // Set the error message text
+        errorMessageDiv.style.display = 'block'; // Show the error message
+        renderQuestion(); // Keep the current question displayed
+        return; // Exit the function to avoid changing the question index
+    }
+
+    if (currentQuestionIndex < totalQuestions - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+    }
+}
+
+// function submitExam() {
+//     const answeredQuestions = userAnswers.filter(answer => answer !== null).length;
+
+//     if (answeredQuestions === 0) {
+//         const confirmSubmit = confirm("You have not answered any questions. Are you sure you want to submit?");
+//         if (!confirmSubmit) {
+//             return; // Cancel submission if the user is not sure
+//         }
+//     }
+
+//     const examResults = {
+//         userAnswers: userAnswers, // Send user's answers to the server
+//         correctAnswers: userAnswers.filter((answer, index) => answer === document.getElementById(`question-${index + 1}`).dataset.correctAnswer),
+//         wrongAnswers: userAnswers.filter((answer, index) => answer !== document.getElementById(`question-${index + 1}`).dataset.correctAnswer),
+//         totalQuestions: totalQuestions,
+//         easyQuestions: userAnswers.filter(answer => answer !== null && (document.getElementById(`question-${userAnswers.indexOf(answer)}`).dataset.difficulty === 'easy')).length,
+//         mediumQuestions: userAnswers.filter(answer => answer !== null && (document.getElementById(`question-${userAnswers.indexOf(answer)}`).dataset.difficulty === 'medium')).length,
+//         hardQuestions: userAnswers.filter(answer => answer !== null && (document.getElementById(`question-${userAnswers.indexOf(answer)}`).dataset.difficulty === 'hard')).length
+//     };
+
+//     fetch('/submit_assessment/', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'X-CSRFToken': '{{ csrf_token }}'
+//         },
+//         body: JSON.stringify(examResults)
+//     })
+//     .then(response => {
+//         if (response.ok) {
+//             window.location.href = '/thank_you/'; // Redirect to the thank you page
+//         } else {
+//             alert("There was an error submitting the assessment. Please try again.");
+//         }
+//     });
+// }
+
+    
+        // function toggleFullScreen() {
+        //     if (!document.fullscreenElement) {
+        //         document.documentElement.requestFullscreen().catch(err => {
+        //             alert(`Error attempting to enable full-screen mode: ${err.message}`);
+        //         });
+        //     } else {
+        //         document.exitFullscreen();
+        //     }
+        // }
+//         function handleKeydown(event) {
+//     if (event.key === 'Escape' && document.fullscreenElement) {
+//         event.preventDefault(); // Prevent exiting full-screen mode
+//         alert("You cannot exit full-screen mode during the quiz!"); // Alert the user
+//         // Re-enter full-screen mode immediately if they try to exit
+//         requestFullScreen();
+//     }
+// }
+
+function requestFullScreen() {
+    const overlay = document.getElementById('fullscreen-overlay');
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+        overlay.style.display = 'none'; // Hide the overlay when entering full-screen
+        document.getElementById('exit-warning').style.display = 'block'; // Show the exit warning
+    }
+}
+
+document.addEventListener('fullscreenchange', (event) => {
+    if (!document.fullscreenElement) {
+        // If the user exits full-screen mode, show the overlay again
+        document.getElementById('fullscreen-overlay').style.display = 'flex';
+        document.getElementById('exit-warning').style.display = 'none'; // Hide exit warning
+    }
+});
+
+// window.onload = () => {
+//     requestFullScreen();
+//     setTimeout(() => {
+//         if (!document.fullscreenElement) {
+//             document.getElementById('fullscreen-overlay').style.display = 'flex'; 
+//         }
+//     }, 1000);
+//     startTimer(); // Start the timer when the page loads
+//     renderQuestion(); // Show the first question on load
+
+//     // Add the event listener for keydown
+//     document.addEventListener('keydown', handleKeydown);
+// };
+
+    </script>
+    <script>
+        let isExamSubmitted = false; // Flag to track if the exam was submitted
+    
+        function preventBackNavigation() {
+            window.history.pushState(null, '', window.location.href);
+            window.addEventListener('popstate', function () {
+                if (!isExamSubmitted) {
+                    alert("You cannot go back during the exam.");
+                    window.history.pushState(null, '', window.location.href);
+                } else {
+                    // If the exam is submitted, show a message and redirect to the thank_you page
+                    alert("Sorry, the exam was held before. You cannot return.");
+                    window.location.href = '/result/';
+                }
+            });
+        }
+    
+        function handleKeydown(event) {
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault();
+                alert("You cannot navigate during the exam.");
+            }
+        }
+    
+        function submitExam() {
+            const answeredQuestions = userAnswers.filter(answer => answer !== null).length;
+            // const confirmSubmit = confirm("You have not answered any questions. Are you sure you want to submit?");
+            if (answeredQuestions === 0) {
+                const confirmSubmit = confirm("You have not answered any questions. Are you sure you want to submit?");
+                if (!confirmSubmit) {
+                    return; // Cancel submission if the user is not sure
+                }
+            }
+    
+            const examResults = {
+                userAnswers: userAnswers, 
+                correctAnswers: userAnswers.filter((answer, index) => answer === document.getElementById(`question-${index + 1}`).dataset.correctAnswer),
+                wrongAnswers: userAnswers.filter((answer, index) => answer !== document.getElementById(`question-${index + 1}`).dataset.correctAnswer),
+                totalQuestions: totalQuestions,
+                easyQuestions: userAnswers.filter(answer => answer !== null && (document.getElementById(`question-${userAnswers.indexOf(answer)}`).dataset.difficulty === 'easy')).length,
+                mediumQuestions: userAnswers.filter(answer => answer !== null && (document.getElementById(`question-${userAnswers.indexOf(answer)}`).dataset.difficulty === 'medium')).length,
+                hardQuestions: userAnswers.filter(answer => answer !== null && (document.getElementById(`question-${userAnswers.indexOf(answer)}`).dataset.difficulty === 'hard')).length
+            };
+    
+            fetch('/submit_assessment/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(examResults)
+            })
+            .then(response => {
+                if (response.ok) {
+                    isExamSubmitted = true;
+                    localStorage.setItem('examSubmitted', 'true'); // Set flag in local storage
+                    window.location.href = '/result/'; // Redirect to the thank you page
+                } else {
+                    alert("There was an error submitting the assessment. Please try again.");
+                }
+            });
+        }
+    
+        window.onload = () => {
+            requestFullScreen();
+            setTimeout(() => {
+                if (!document.fullscreenElement) {
+                    document.getElementById('fullscreen-overlay').style.display = 'flex'; 
+                }
+            }, 500);
+    
+            startTimer(); 
+            renderQuestion(); 
+    
+            document.addEventListener('keydown', handleKeydown);
+            preventBackNavigation();
+    
+            // Check if the exam has already been submitted
+            // if (localStorage.getItem('examSubmitted') === 'true') {
+            //     alert("Sorry, the exam was held before. You cannot return.");
+            //     window.location.href = '/result/';
+            // }
+        };
+        // Prevent page refresh or reload
+       // Prevent page refresh or reload
+window.addEventListener('beforeunload', function (e) {
+    // Show a confirmation message when trying to refresh
+    const confirmationMessage = "Are you sure you want to refresh the page? Your progress may be lost!";
+    
+    // For browsers that support it, return the confirmation message
+    e.returnValue = confirmationMessage;
+    
+    // For other browsers like Chrome that may ignore custom text
+    return confirmationMessage;
+});
+
+// Prevent keyboard shortcuts or other refresh methods (F5, Ctrl+R)
+window.addEventListener('keydown', function (e) {
+    if ((e.key === "F5") || (e.ctrlKey && e.key === "r")) {
+        e.preventDefault();  // Disable the default refresh action
+        alert("Refreshing the page is not allowed.");
+    }
+});
+
+
+    </script>
+    
+</body>
+</html>
