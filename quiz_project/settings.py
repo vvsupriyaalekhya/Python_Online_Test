@@ -19,7 +19,7 @@ SECRET_KEY = 'django-insecure-jxoru$q=)+-omzi-us3wnlt2v(sj11qwt9i+$*@y&gs5%-o&u^
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['python-app-erkp.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['python-Online-Test-erkp.onrender.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -28,13 +28,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'quiz',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.linkedin_oauth2',
+    'quiz',
 ]
 
 SITE_ID = 1
